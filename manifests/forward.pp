@@ -14,7 +14,7 @@
 define vision_firewall::forward (
 
   String $dport,
-  String $sourceip,
+  String $sourceip     = '0.0.0.0',
   String $ipaddress    = $::ipaddress,
   String $dom0hostname = $::dom0hostname,
   String $dom0ip       = $::dom0ip,
@@ -24,7 +24,23 @@ define vision_firewall::forward (
 
   $todest = "${ipaddress}:${dport}"
 
-  firewall { $rule_name :
+  if $sourceip == '0.0.0.0' {
+
+    firewall { $rule_name :
+      tag         => $dom0hostname,
+      chain       => 'PREROUTING',
+      table       => 'nat',
+      proto       => 'tcp',
+      iniface     => 'eth0',
+      destination => $dom0ip,
+      jump        => 'DNAT',
+      dport       => $dport,
+      todest      => $todest,
+    }
+
+  } else {
+
+    firewall { $rule_name :
       tag         => $dom0hostname,
       chain       => 'PREROUTING',
       table       => 'nat',
@@ -35,6 +51,8 @@ define vision_firewall::forward (
       jump        => 'DNAT',
       dport       => $dport,
       todest      => $todest,
+    }
+
   }
 
 }
