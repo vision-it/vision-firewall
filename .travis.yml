@@ -1,30 +1,28 @@
----
 language: ruby
-
-# cache the bundle betweens builds
 cache: bundler
-
 matrix:
-    fast_finish: true
-    include:
-        - rvm: 2.1
-          env: PUPPET_VERSION="4.3" STRICT_VARIABLES="yes"
-          services: docker
-          sudo: required
-          script: bundle exec rake beaker
-        - rvm: 2.1
-          env: PUPPET_VERSION="4.5" STRICT_VARIABLES="no"
-          services: docker
-          sudo: required
-          script: bundle exec rake
-        - rvm: 2.2
-          env: PUPPET_VERSION="4.6.1" STRICT_VARIABLES="yes"
-          services: docker
-          sudo: required
-          script: bundle exec rake beaker
+  fast_finish: true
+  include:
+  - rvm: 2.1
+    env: PUPPET_VERSION="4.3" STRICT_VARIABLES="yes"
+    services: docker
+    sudo: required
+    script: bundle exec rake beaker
+  - rvm: 2.1
+    env: PUPPET_VERSION="4.5" STRICT_VARIABLES="no"
+    services: docker
+    sudo: required
+    script: bundle exec rake
+  - rvm: 2.2
+    env: PUPPET_VERSION="4.6.1" STRICT_VARIABLES="yes"
+    services: docker
+    sudo: required
+    script: bundle exec rake beaker
 notifications:
   email:
     recipients:
-      - I+2kwgaNPMAzEu2LuJe9u+GIFp5x5JmvTjt7fDhfjMs7Us6+vV5kyQ0YEu+qgZTrVcsccdLkMH7FnXLK2SGnDUFdIBYhb/REIfK1Fs+HmH7Gez7ndqS+wfEJuA76eRY6Is8METF9Ty7I/AmNeg9rqWEgGFGFRYoTikXvsOh5TH86AwIynjaASeq+uYgdS3WWkKJwuZGspOB0o0kY2Ctxvm5IBl58suQ44Xd0TPj9OcsZ/CPbVNbL/Z3k1O+jC5kOXM3G/0dKkJyT5pTrtl89AsiKmKj2fv1mZGi2JxaToXCQSntnefyNcM9bei7sOpcm8XeVO4pe9GhJxxO3rHYTy75L+13Gt6MUHxEbFUcvAxgE4BfVL477BboVPHozacFxPUBO1BcAuRvWaIM+IS4Abys1RA9w0TgmNBx8UIXBqo7qJi5HEjz79OvonDejGTrA/MujVTQaEylygLqUX/NdIC7cFVWfDgZIydemoYBWWYtZLGzFysNQkkd5Jdh5/LA3scZMrisw4JIPmlx93LVOnqZVbgTkYQUxuvBd/o0x9qdwl/NZmuvJbEipgUZLt70afiYBd9wYHWt31nT8EHUhV2Exqrmd/ej54FmqBF3hgBo1bP6OwIzgxpbNzv8AcZPU5v+22P+4UNJlBVDiDzWj4c9Vfj4lLhyhg+BIC5xE05A=
+    - I+2kwgaNPMAzEu2LuJe9u+GIFp5x5JmvTjt7fDhfjMs7Us6+vV5kyQ0YEu+qgZTrVcsccdLkMH7FnXLK2SGnDUFdIBYhb/REIfK1Fs+HmH7Gez7ndqS+wfEJuA76eRY6Is8METF9Ty7I/AmNeg9rqWEgGFGFRYoTikXvsOh5TH86AwIynjaASeq+uYgdS3WWkKJwuZGspOB0o0kY2Ctxvm5IBl58suQ44Xd0TPj9OcsZ/CPbVNbL/Z3k1O+jC5kOXM3G/0dKkJyT5pTrtl89AsiKmKj2fv1mZGi2JxaToXCQSntnefyNcM9bei7sOpcm8XeVO4pe9GhJxxO3rHYTy75L+13Gt6MUHxEbFUcvAxgE4BfVL477BboVPHozacFxPUBO1BcAuRvWaIM+IS4Abys1RA9w0TgmNBx8UIXBqo7qJi5HEjz79OvonDejGTrA/MujVTQaEylygLqUX/NdIC7cFVWfDgZIydemoYBWWYtZLGzFysNQkkd5Jdh5/LA3scZMrisw4JIPmlx93LVOnqZVbgTkYQUxuvBd/o0x9qdwl/NZmuvJbEipgUZLt70afiYBd9wYHWt31nT8EHUhV2Exqrmd/ej54FmqBF3hgBo1bP6OwIzgxpbNzv8AcZPU5v+22P+4UNJlBVDiDzWj4c9Vfj4lLhyhg+BIC5xE05A=
     on_success: never
     on_failure: always
+  slack:
+    secure: KMRD4S9qlvEJHWjB0k5ll/9rSjcoG/eRa4nne20uMgAFejfch76dm8XVp4/UBKHkTkY0a1nUdk5PmkgI22J7kw+yUqud26mnNvCmYpPx2OHNLA1GfbY9c1i2LGpqjbMULzXgK39R/8xolCsw1N70rk+npZ5KA1gzIoRFyLh8c4y39bvHRFzdSHp2xvvmlR0tdlqp35itd6BxoBcNM0UOWMY49QmIBUynei6zTogxLP/1YRZGF+nSkjQVw/HTBQ16AsTXxYFKOcBgGGTeUJcYUpEMEAa62CRHUqQm+r6NS0Epud0BGb0M7FywV2iIwnHSe4ADvWYVnFUumyoKEc1DtAv/41gVTwq3cJ7L9o3BdYC0mnYPyc34XvmnnrRMeDzaWGGW0sLlsx9uMG0w2PHBUtGMC9pSGNg+Rz+pOk2npmtlioCx0qIJzgUFkLdLMYpgZoxZ251t5OEsbvI7vg9IiUz8xRZfwvnTwsfvLa+boqFxZaaHqVl5G7mNnf1u1eN6mAmCHriNWp4+Ez5kDvFhheJ86mADCKY/uW78eXbYcQgu5Xm26ZLPlD5I+kju15DpyAig9/SibeAKn9zD9uOtiKSnFKMGXCqSskytzvKzFqM948ZMToD6P/t8/q2MBLHnJtg7t59QwQkdij6VrTnRns7R0Utf8if4qbECtFaHpuo=
