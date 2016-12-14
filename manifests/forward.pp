@@ -13,12 +13,12 @@
 
 define vision_firewall::forward (
 
-  String $ipaddress,
-  String $dom0hostname,
-  String $dom0ip,
-  String $sourceip,
   String $dport,
-  String $rule_name = $title
+  String $sourceip,
+  String $ipaddress    = $::ipaddress,
+  String $dom0hostname = $::dom0hostname,
+  String $dom0ip       = $::dom0ip,
+  String $rule_name    = $title,
 
 ) {
 
