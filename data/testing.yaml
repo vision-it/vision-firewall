@@ -1,0 +1,14 @@
+---
+vision_firewall::forward_rules:
+  "400 foobar":
+    ipaddress: '123.123.123.123'
+    dom0hostname: 'foobar'
+    dom0ip: '111.111.111.111'
+    sourceip: '1.1.1.1/24'
+    dport: '1234'
+  "410 barfoo":
+    ipaddress: '123.123.123.123'
+    dom0hostname: 'foobar'
+    dom0ip: '111.111.111.111'
+    sourceip: '1.1.1.1/24'
+    dport: '1234'

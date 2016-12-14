@@ -1,0 +1,30 @@
+---
+language: ruby
+
+# cache the bundle betweens builds
+cache: bundler
+
+matrix:
+    fast_finish: true
+    include:
+        - rvm: 2.1
+          env: PUPPET_VERSION="4.3" STRICT_VARIABLES="yes"
+          services: docker
+          sudo: required
+          script: bundle exec rake beaker
+        - rvm: 2.1
+          env: PUPPET_VERSION="4.5" STRICT_VARIABLES="no"
+          services: docker
+          sudo: required
+          script: bundle exec rake
+        - rvm: 2.2
+          env: PUPPET_VERSION="4.6.1" STRICT_VARIABLES="yes"
+          services: docker
+          sudo: required
+          script: bundle exec rake beaker
+notifications:
+  email:
+    recipients:
+      - I+2kwgaNPMAzEu2LuJe9u+GIFp5x5JmvTjt7fDhfjMs7Us6+vV5kyQ0YEu+qgZTrVcsccdLkMH7FnXLK2SGnDUFdIBYhb/REIfK1Fs+HmH7Gez7ndqS+wfEJuA76eRY6Is8METF9Ty7I/AmNeg9rqWEgGFGFRYoTikXvsOh5TH86AwIynjaASeq+uYgdS3WWkKJwuZGspOB0o0kY2Ctxvm5IBl58suQ44Xd0TPj9OcsZ/CPbVNbL/Z3k1O+jC5kOXM3G/0dKkJyT5pTrtl89AsiKmKj2fv1mZGi2JxaToXCQSntnefyNcM9bei7sOpcm8XeVO4pe9GhJxxO3rHYTy75L+13Gt6MUHxEbFUcvAxgE4BfVL477BboVPHozacFxPUBO1BcAuRvWaIM+IS4Abys1RA9w0TgmNBx8UIXBqo7qJi5HEjz79OvonDejGTrA/MujVTQaEylygLqUX/NdIC7cFVWfDgZIydemoYBWWYtZLGzFysNQkkd5Jdh5/LA3scZMrisw4JIPmlx93LVOnqZVbgTkYQUxuvBd/o0x9qdwl/NZmuvJbEipgUZLt70afiYBd9wYHWt31nT8EHUhV2Exqrmd/ej54FmqBF3hgBo1bP6OwIzgxpbNzv8AcZPU5v+22P+4UNJlBVDiDzWj4c9Vfj4lLhyhg+BIC5xE05A=
+    on_success: never
+    on_failure: always
