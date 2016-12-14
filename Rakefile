@@ -15,7 +15,7 @@ begin
     PuppetLint.configuration.ignore_paths = ["spec/**/*.pp", "vendor/**/*.pp"]
 
     # Define Tasks
-    task :default => [:validate, :lint, :spec, :beaker]
+    task :default => [:validate, :lint, :spec]
   end
 
 rescue Gem::LoadError
