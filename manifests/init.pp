@@ -13,17 +13,35 @@
 
 class vision_firewall (
 
-  Optional[Hash] $forward_rules = undef,
+  Hash $default_rules,
+  Optional[Hash] $system_rules  = undef,
+  Optional[Hash] $export_rules  = undef,
+  Optional[Array] $collect_tags = [ $::fqdn ],
   String $location              = $::location,
 
 ) {
 
-  if ($forward_rules) {
+  # Default Rules that are always applied
+  contain vision_firewall::pre
+  contain vision_firewall::post
 
-    if ($location =~ /(int|dmz)Vm/) {
-      create_resources('@@vision_firewall::forward', $forward_rules)
+  # TODO Test if required, or already in Module
+  package {'iptables-persistent':
+    ensure => present,
+  }
+
+  if ($export_rules) {
+    create_resources('@@vision_firewall::rule', $export_rules)
+  }
+
+  if ($system_rules) {
+    create_resources('vision_firewall::rule', $system_rules)
+  }
+
+  if ($collect_tags) {
+    $collect_tags.each | $tag | {
+      Firewall <<| tag == $tag |>>
     }
-
   }
 
 }
