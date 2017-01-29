@@ -15,11 +15,29 @@
 
 class vision_firewall::pre {
 
-  # TODO Test if this is required
-  Firewall {
-      require => undef,
+  # Default policy for chains
+  firewallchain { 'INPUT:filter:IPv4':
+    ensure => present,
+    purge  => true,
+    policy => drop,
+    before => undef,
   }
 
+  firewallchain { 'OUTPUT:filter:IPv4':
+    ensure => present,
+    purge  => true,
+    policy => accept,
+    before => undef,
+  }
+
+  firewallchain { 'FORWARD:filter:IPv4':
+    ensure => present,
+    purge  => true,
+    policy => drop,
+    before => undef,
+  }
+
+  # Sane Default Rules that are always applied first
   firewall { '000 accept all ICMP':
     proto  => 'icmp',
     action => 'accept',
@@ -39,8 +57,8 @@ class vision_firewall::pre {
     proto  => 'all',
     state  => ['RELATED', 'ESTABLISHED'],
     action => 'accept',
-  }->
-  firewall { '004 accept all SSH':
+    }->
+  firewall { '010 accept all SSH':
     dport  => 22,
     proto  => tcp,
     action => accept,

@@ -1,22 +1,15 @@
 ---
 vision_firewall::export_rules:
-  "200 foobar export":
-    ipaddress: '1.1.1.1'
-    dom0hostname: 'foobar'
-    dom0ip: '11.11.11'
-    sourceip: '1.1.1.1/24'
-    dport: '8000'
-  "210 barfoo export":
-    ipaddress: '2.2.2.2'
-    dom0hostname: 'foobar'
-    dom0ip: '22.22.22.22'
-    sourceip: '1.1.1.1/24'
-    dport: '8080'
-
+  '100 allow http access':
+    tag: 'foobar.com'
+    port: '80'
+    proto: 'tcp'
+    action: 'accept'
 vision_firewall::system_rules:
-  "400 foobar system":
-    ipaddress: '1.1.1.1'
-    dport: '80'
-  "410 barfoo system":
-    ipaddress: '2.2.2.2'
-    dport: '443'
+  '101 allow https access':
+    port: '443'
+    proto: 'tcp'
+    action: 'accept'
+
+vision_firewall::collect_tags:
+  - 'foobar.com'

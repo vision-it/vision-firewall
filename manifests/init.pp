@@ -13,11 +13,9 @@
 
 class vision_firewall (
 
-  Hash $default_rules,
   Optional[Hash] $system_rules  = undef,
   Optional[Hash] $export_rules  = undef,
   Optional[Array] $collect_tags = [ $::fqdn ],
-  String $location              = $::location,
 
 ) {
 
@@ -25,17 +23,17 @@ class vision_firewall (
   contain vision_firewall::pre
   contain vision_firewall::post
 
-  # TODO Test if required, or already in Module
+  # Required to save configuration
   package {'iptables-persistent':
     ensure => present,
   }
 
   if ($export_rules) {
-    create_resources('@@vision_firewall::rule', $export_rules)
+    create_resources('@@firewall', $export_rules)
   }
 
   if ($system_rules) {
-    create_resources('vision_firewall::rule', $system_rules)
+    create_resources('firewall', $system_rules)
   }
 
   if ($collect_tags) {
