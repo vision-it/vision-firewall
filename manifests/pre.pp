@@ -15,6 +15,10 @@
 
 class vision_firewall::pre {
 
+  Firewall {
+    require => undef,
+  }
+
   # Default policy for chains
   firewallchain { 'INPUT:filter:IPv4':
     ensure => present,
