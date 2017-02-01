@@ -23,10 +23,8 @@ class vision_firewall (
   contain vision_firewall::pre
   contain vision_firewall::post
 
-  # Required to save configuration
-  package {'iptables-persistent':
-    ensure => present,
-  }
+  # Include firewall module
+  contain ::firewall
 
   if ($export_rules) {
     create_resources('@@firewall', $export_rules)
