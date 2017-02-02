@@ -2,12 +2,12 @@
 vision_firewall::export_rules:
   '100 allow http access':
     tag: 'foobar.com'
-    port: '80'
+    dport: '80'
     proto: 'tcp'
     action: 'accept'
 vision_firewall::system_rules:
   '101 allow https access':
-    port: '443'
+    dport: '443'
     proto: 'tcp'
     action: 'accept'
 
