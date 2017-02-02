@@ -19,14 +19,17 @@ class vision_firewall (
 
 ) {
 
+  Firewall {
+    before  => Class['vision_firewall::post'],
+    require => Class['vision_firewall::pre'],
+  }
+
   # Default Rules that are always applied
   contain vision_firewall::pre
   contain vision_firewall::post
 
-  # Required to save configuration
-  package {'iptables-persistent':
-    ensure => present,
-  }
+  # Include firewall module
+  contain ::firewall
 
   if ($export_rules) {
     create_resources('@@firewall', $export_rules)
@@ -38,8 +41,8 @@ class vision_firewall (
 
   if ($collect_tags) {
     $collect_tags.each | $tag | {
-      Firewall <<| tag == $tag |>>
-    }
+        Firewall <<| tag == $tag |>>
+      }
   }
 
 }

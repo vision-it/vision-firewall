@@ -10,14 +10,13 @@ Webserver:
 ```
 vision_firewall::system_rules:
   '100 allow http access':
-   port: '80'
-   proto: 'tcp'
-   action: 'accept'
+    dport: '80'
+    proto: 'tcp'
+    action: 'accept'
   '101 allow https access':
-   port: '443'
-   proto: 'tcp'
-   action: 'accept'
-
+    dport: '443'
+    proto: 'tcp'
+    action: 'accept'
 ```
 
 LDAP:
@@ -25,14 +24,13 @@ LDAP:
 ```
 vision_firewall::system_rules:
   '100 allow ldap access':
-   port: '389'
-   proto: 'tcp'
-   action: 'accept'
+    dport: '389'
+    proto: 'tcp'
+    action: 'accept'
   '101 allow ldaps access':
-   port: 636'
-   proto: 'tcp'
-   action: 'accept'
-
+    dport: 636'
+    proto: 'tcp'
+    action: 'accept'
 ```
 
 Kerberos:
@@ -40,9 +38,9 @@ Kerberos:
 ```
 vision_firewall::system_rules:
   '100 allow kerberos access':
-   port: '88'
-   proto: 'udp'
-   action: 'accept'
+    dport: '88'
+    proto: 'udp'
+    action: 'accept'
 ```
 
 MySQL:
@@ -50,9 +48,9 @@ MySQL:
 ```
 vision_firewall::system_rules:
   '100 allow mysql access':
-   port: '3306'
-   proto: 'tcp'
-   action: 'accept'
+    dport: '3306'
+    proto: 'tcp'
+    action: 'accept'
 ```
 
 Puppet Master:
@@ -60,9 +58,9 @@ Puppet Master:
 ```
 vision_firewall::system_rules:
   '100 allow puppet master access':
-   port: 8140'
-   proto: 'tcp'
-   action: 'accept'
+    dport: 8140'
+    proto: 'tcp'
+    action: 'accept'
 ```
 
 
@@ -81,4 +79,3 @@ Include in a role/profile:
 ```puppet
 contain ::vision_firewall
 ```
-
