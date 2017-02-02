@@ -13,7 +13,11 @@
 # contain ::vision_firewall::pre
 #
 
-class vision_firewall::pre {
+class vision_firewall::pre (
+
+  Array $ignore_purge = $vision_firewall::ignore_purge,
+
+) {
 
   Firewall {
     require => undef,
@@ -24,21 +28,19 @@ class vision_firewall::pre {
     ensure => present,
     purge  => true,
     policy => drop,
-    before => undef,
   }
 
   firewallchain { 'OUTPUT:filter:IPv4':
     ensure => present,
     purge  => true,
     policy => accept,
-    before => undef,
   }
 
   firewallchain { 'FORWARD:filter:IPv4':
     ensure => present,
     purge  => true,
     policy => drop,
-    before => undef,
+    ignore => $ignore_purge,
   }
 
   # Sane Default Rules that are always applied first

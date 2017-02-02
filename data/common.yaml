@@ -1,2 +1,5 @@
 ---
-
+vision_firewall::ignore_purge:
+  - '-m (?i:physdev)'
+  - '-j DOCKER'
+  - '-j DOCKER-ISOLATION'

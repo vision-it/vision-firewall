@@ -13,6 +13,7 @@
 
 class vision_firewall (
 
+  Array $ignore_purge,
   Optional[Hash] $system_rules  = undef,
   Optional[Hash] $export_rules  = undef,
   Optional[Array] $collect_tags = [ $::fqdn ],
