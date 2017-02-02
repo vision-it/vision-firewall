@@ -5,6 +5,7 @@ describe 'vision_firewall' do
   context 'with defaults' do
     it 'should idempotently run' do
       pp = <<-EOS
+
         class { 'vision_firewall':
               }
       EOS
@@ -22,7 +23,7 @@ describe 'vision_firewall' do
     it { should have_rule('-A INPUT -p tcp -m multiport --dports 22 -m comment --comment "010 accept all SSH" -j ACCEPT') }
     it { should have_rule('-A INPUT -p tcp -m multiport --ports 80 -m comment --comment "100 allow http access" -j ACCEPT') }
     it { should have_rule('-A INPUT -p tcp -m multiport --ports 443 -m comment --comment "101 allow https access" -j ACCEPT') }
-    it { should have_rule('-A INPUT -p tcp -m comment --comment "999 drop all other requests" -j DROP') }
+    it { should have_rule('-A INPUT -m comment --comment "999 drop all other requests" -j DROP') }
   end
 
 end
