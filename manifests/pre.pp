@@ -68,6 +68,16 @@ class vision_firewall::pre (
     dport  => 22,
     proto  => tcp,
     action => accept,
+    }->
+  firewall { '011 accept all SMTP':
+    dport  => 25,
+    proto  => tcp,
+    action => accept,
+    }->
+  firewall { '012 accept all ICINGA':
+    dport  => 5665,
+    proto  => tcp,
+    action => accept,
   }
 
 }
