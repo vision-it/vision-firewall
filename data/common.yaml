@@ -3,6 +3,8 @@ vision_firewall::ignore_purge:
   - '-m (?i:physdev)'
   - '-j DOCKER'
   - '-j DOCKER-ISOLATION'
+  - '-o docker0'
+  - '-i docker0'
 
 lookup_options:
   vision_firewall::system_rules:
