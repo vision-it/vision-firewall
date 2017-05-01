@@ -1,0 +1,15 @@
+---
+vision_firewall::export_rules:
+  '100 allow http access':
+    tag: 'foobar.com'
+    dport: '80'
+    proto: 'tcp'
+    action: 'accept'
+vision_firewall::system_rules:
+  '101 allow https access':
+    dport: '443'
+    proto: 'tcp'
+    action: 'accept'
+
+vision_firewall::collect_tags:
+  - 'foobar.com'
