@@ -6,7 +6,14 @@ describe 'vision_firewall' do
       pp = <<-EOS
 
         class { 'vision_firewall':
-              }
+         system_rules => {
+           '101 allow https access' => {
+             dport  => '443',
+             proto  => 'tcp',
+             action => 'accept'
+            }
+           }
+          }
       EOS
 
       apply_manifest(pp, catch_failures: true)

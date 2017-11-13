@@ -2,10 +2,10 @@
 fixtures:
   repositories:
     stdlib:
-      ref: "4.12.0"
+      ref: "4.18.0"
       repo: "https://github.com/puppetlabs/puppetlabs-stdlib"
     firewall:
-      ref: "1.8.1"
+      ref: "1.9.0"
       repo: "https://github.com/puppetlabs/puppetlabs-firewall"
   symlinks:
     vision_firewall: '#{source_dir}'
