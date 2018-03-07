@@ -3,7 +3,7 @@ require 'spec_helper_acceptance'
 describe 'vision_firewall' do
   context 'with defaults' do
     it 'idempotentlies run' do
-      pp = <<-EOS
+      pp = <<-FILE
 
         class { 'vision_firewall':
          system_rules => {
@@ -14,7 +14,7 @@ describe 'vision_firewall' do
             }
            }
           }
-      EOS
+      FILE
 
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
