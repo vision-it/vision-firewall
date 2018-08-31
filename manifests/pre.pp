@@ -38,6 +38,13 @@ class vision_firewall::pre (
     policy => accept,
     ignore => $ignore_purge,
   }
+  
+  firewallchain { 'OUTPUT:nat:IPv4':
+    ensure => present,
+    purge  => true,
+    policy => accept,
+    ignore => $ignore_purge,
+  }
 
   firewallchain { 'PREROUTING:nat:IPv4':
     ensure => present,
