@@ -15,7 +15,7 @@
 
 class vision_firewall::pre (
 
-  Array $ignore_purge = $vision_firewall::ignore_purge,
+  Array $ignore_purge    = $vision_firewall::ignore_purge,
   String $forward_policy = $vision_firewall::forward_policy,
 
 ) {
@@ -38,7 +38,7 @@ class vision_firewall::pre (
     policy => accept,
     ignore => $ignore_purge,
   }
-  
+
   firewallchain { 'OUTPUT:nat:IPv4':
     ensure => present,
     purge  => true,
