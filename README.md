@@ -9,12 +9,8 @@ Webserver:
 
 ```
 vision_firewall::system_rules:
-  '100 allow http access':
-    dport: '80'
-    proto: 'tcp'
-    action: 'accept'
-  '101 allow https access':
-    dport: '443'
+  '100 allow http and https access':
+    dport: [80, 443]
     proto: 'tcp'
     action: 'accept'
 ```
@@ -58,7 +54,7 @@ Puppet Master:
 ```
 vision_firewall::system_rules:
   '100 allow puppet master access':
-    dport: 8140'
+    dport: '8140'
     proto: 'tcp'
     action: 'accept'
 ```
