@@ -4,10 +4,15 @@ vision_firewall::ignore_purge:
   - '-m (?i:physdev)'
   - '-j DOCKER'
   - '-j DOCKER-ISOLATION'
+  - '-j DOCKER-ISOLATION-STAGE-1'
+  - '-j DOCKER-ISOLATION-STAGE-2'
+  - '-j DOCKER-INGRESS'
   - '-j MASQUERADE'
   - '-o docker0'
   - '-i docker0'
-
+  - '-o docker_gwbridge'
+  - '-i docker_gwbridge'
+  
 lookup_options:
   vision_firewall::system_rules:
     merge:
