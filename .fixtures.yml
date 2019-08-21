@@ -5,7 +5,7 @@ fixtures:
       ref: "4.24.0"
       repo: "https://github.com/puppetlabs/puppetlabs-stdlib"
     firewall:
-      ref: "1.12.0"
+      ref: "1.13.0"
       repo: "https://github.com/puppetlabs/puppetlabs-firewall"
   symlinks:
     vision_firewall: '#{source_dir}'
