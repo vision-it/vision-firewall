@@ -1,7 +1,9 @@
 sudo: false
 language: ruby
 cache: bundler
-rvm: 2.3.4
+rvm: 2.3
+before_install:
+  - 'gem install bundler -v 2.0.2'
 script:
   - 'bundle exec rake $CHECK'
 matrix:
@@ -9,10 +11,6 @@ matrix:
   allow_failures:
     - env: STRICT_VARIABLES="yes" CHECK="rubocop"
       bundler_args: --without testing acceptance
-    - env: STRICT_VARIABLES="yes" CHECK="beaker"
-      bundler_args: --without rubocop
-      services: docker
-      sudo: required
   include:
     - env: STRICT_VARIABLES="yes" CHECK="rubocop"
       bundler_args: --without testing acceptance
@@ -22,15 +20,8 @@ matrix:
       bundler_args: --without rubocop acceptance
     - env: STRICT_VARIABLES="yes" CHECK="spec"
       bundler_args: --without rubocop acceptance
-    - env: STRICT_VARIABLES="yes" CHECK="beaker"
-      bundler_args: --without rubocop
-      services: docker
-      sudo: required
     - env: STRICT_VARIABLES="yes" CHECK="beaker" BEAKER_set="debian9"
-      bundler_args: --without rubocop
       services: docker
       sudo: required
 notifications:
   email: false
-  slack:
-    secure: KMRD4S9qlvEJHWjB0k5ll/9rSjcoG/eRa4nne20uMgAFejfch76dm8XVp4/UBKHkTkY0a1nUdk5PmkgI22J7kw+yUqud26mnNvCmYpPx2OHNLA1GfbY9c1i2LGpqjbMULzXgK39R/8xolCsw1N70rk+npZ5KA1gzIoRFyLh8c4y39bvHRFzdSHp2xvvmlR0tdlqp35itd6BxoBcNM0UOWMY49QmIBUynei6zTogxLP/1YRZGF+nSkjQVw/HTBQ16AsTXxYFKOcBgGGTeUJcYUpEMEAa62CRHUqQm+r6NS0Epud0BGb0M7FywV2iIwnHSe4ADvWYVnFUumyoKEc1DtAv/41gVTwq3cJ7L9o3BdYC0mnYPyc34XvmnnrRMeDzaWGGW0sLlsx9uMG0w2PHBUtGMC9pSGNg+Rz+pOk2npmtlioCx0qIJzgUFkLdLMYpgZoxZ251t5OEsbvI7vg9IiUz8xRZfwvnTwsfvLa+boqFxZaaHqVl5G7mNnf1u1eN6mAmCHriNWp4+Ez5kDvFhheJ86mADCKY/uW78eXbYcQgu5Xm26ZLPlD5I+kju15DpyAig9/SibeAKn9zD9uOtiKSnFKMGXCqSskytzvKzFqM948ZMToD6P/t8/q2MBLHnJtg7t59QwQkdij6VrTnRns7R0Utf8if4qbECtFaHpuo=
