@@ -12,11 +12,6 @@ describe 'vision_firewall' do
         it { is_expected.to compile.with_all_deps }
       end
 
-      # Export a firewall resource
-      context 'exported resources' do
-        it { expect(exported_resources).to contain_firewall('100 allow http access') }
-      end
-
       # Plain old resource
       context 'createed resources' do
         it { is_expected.to contain_firewall('101 allow https access') }

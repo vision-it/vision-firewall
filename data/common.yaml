@@ -12,13 +12,9 @@ vision_firewall::ignore_purge:
   - '-i docker0'
   - '-o docker_gwbridge'
   - '-i docker_gwbridge'
-  
+
 lookup_options:
   vision_firewall::system_rules:
-    merge:
-      strategy: deep
-      merge_hash_arrays: true
-  vision_firewall::export_rules:
     merge:
       strategy: deep
       merge_hash_arrays: true

@@ -6,8 +6,6 @@ describe 'vision_firewall' do
       pp = <<-FILE
 
         class { 'vision_firewall':
-         export_rules => undef,
-         collect_tags => undef,
          system_rules => {
            '101 allow https access' => {
              dport  => '443',
