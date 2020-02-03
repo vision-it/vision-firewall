@@ -5,6 +5,9 @@ describe 'vision_firewall' do
     it 'idempotentlies run' do
       pp = <<-FILE
 
+        exec { '/bin/grep -q 10 /etc/debian_version && /usr/bin/update-alternatives --set iptables /usr/sbin/iptables-legacy || echo stretch ':
+        }
+
         class { 'vision_firewall':
          system_rules => {
            '101 allow https access' => {
@@ -16,8 +19,8 @@ describe 'vision_firewall' do
           }
       FILE
 
+      apply_manifest(pp, catch_failures: false)
       apply_manifest(pp, catch_failures: true)
-      apply_manifest(pp, catch_changes: false)
     end
   end
 
