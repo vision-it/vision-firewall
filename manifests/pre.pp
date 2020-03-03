@@ -51,7 +51,6 @@ class vision_firewall::pre (
     ignore => $ignore_purge,
   }
 
-  # TODO default to drop
   firewallchain { 'FORWARD:filter:IPv4':
     ensure => present,
     purge  => true,
