@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.org/vision-it/vision-firewall.svg?branch=production)](https://travis-ci.org/vision-it/vision-firewall)
 
-
 ## Firewall Rule Examples
 
 Webserver:

@@ -4,11 +4,9 @@
 # Parameters
 # ----------
 #
-# Examples
-# --------
-#
-# @example
-# contain ::vision_firewall
+# @param ignore_purge List of rules to ignore when purging
+# @param forward_policy Policy for forward table
+# @param system_rules List of rules to apply. See README
 #
 
 class vision_firewall (

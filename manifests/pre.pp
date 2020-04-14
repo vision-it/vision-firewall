@@ -2,7 +2,7 @@
 # ===========================
 #
 # These are the first firewall rules applied. Default stuff.
-##
+#
 
 class vision_firewall::pre (
 
