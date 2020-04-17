@@ -83,5 +83,11 @@ class vision_firewall::pre (
     state  => ['RELATED', 'ESTABLISHED'],
     action => 'accept',
   }
+  -> firewall { '005 enable logging':
+    chain      => 'INPUT',
+    proto      => 'all',
+    jump       => 'LOG',
+    log_prefix => 'iptables: ',
+  }
 
 }
