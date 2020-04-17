@@ -31,6 +31,7 @@ describe 'vision_firewall' do
     it { is_expected.to have_rule('-A INPUT -m state --state RELATED,ESTABLISHED -m comment --comment "004 accept related established rules" -j ACCEPT') }
 
     it { is_expected.to have_rule('-A INPUT -p tcp -m multiport --dports 443 -m comment --comment "101 allow https access" -j ACCEPT') }
+    it { is_expected.to have_rule('-A INPUT -m comment --comment "005 enable logging" -j LOG --log-prefix "iptables: "') }
     it { is_expected.to have_rule('-A INPUT -m comment --comment "999 drop all other requests" -j DROP') }
   end
 end
