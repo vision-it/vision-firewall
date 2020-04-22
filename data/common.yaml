@@ -13,7 +13,7 @@ vision_firewall::ignore_purge:
   - '-o docker_gwbridge'
   - '-i docker_gwbridge'
 
-vision_firewall::psad::admin_mail: 'root@localhost'
+vision_firewall::psad::admin_mail: "%{hiera('vision::mail')}"
 
 lookup_options:
   vision_firewall::system_rules:
