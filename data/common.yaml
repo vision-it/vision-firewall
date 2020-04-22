@@ -13,8 +13,13 @@ vision_firewall::ignore_purge:
   - '-o docker_gwbridge'
   - '-i docker_gwbridge'
 
+vision_firewall::psad::admin_mail: 'root@localhost'
+
 lookup_options:
   vision_firewall::system_rules:
     merge:
       strategy: deep
       merge_hash_arrays: true
+  vision_firewall::psad::auto_dl:
+    merge:
+      strategy: unique

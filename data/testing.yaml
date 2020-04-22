@@ -1,4 +1,11 @@
 ---
+vision_firewall::psad::admin_mail: 'foo@bar.example'
+vision_firewall::psad::hostname: 'foohostname'
+vision_firewall::psad::auto_dl:
+  - '127.0.0.1 0;'
+  - '192.168.10.4 3 tcp;'
+  - '10.10.1.0/24 3 tcp/1-1024;'
+
 vision_firewall::system_rules:
   '101 allow https access':
     dport: '443'
