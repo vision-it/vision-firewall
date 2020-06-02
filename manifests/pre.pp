@@ -84,10 +84,13 @@ class vision_firewall::pre (
     action => 'accept',
   }
   -> firewall { '005 enable logging':
-    chain      => 'INPUT',
-    proto      => 'all',
-    jump       => 'LOG',
-    log_prefix => 'iptables: ',
+    chain            => 'INPUT',
+    proto            => 'all',
+    jump             => 'LOG',
+    log_tcp_sequence => true,
+    log_tcp_options  => true,
+    log_ip_options   => true,
+    log_prefix       => 'iptables: ',
   }
 
 }
