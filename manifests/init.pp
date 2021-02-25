@@ -27,7 +27,7 @@ class vision_firewall (
   contain vision_firewall::post
 
   # Include psad
-  contain vision_firewall::psad
+  # contain vision_firewall::psad
 
   # Include firewall module
   contain ::firewall
